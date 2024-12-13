@@ -12,10 +12,13 @@ const Header = () => {
   // Menu items definition
   const menuItems = [
     { 
-      label: 'Dashboard', path: '/', visibleForAll: true 
+      label: 'Homepage', path: '/', visibleForAll: true 
     },
     { 
-      label: 'Dashboard new', path: '/dashboard', visibleForRoles: ['Administrator', 'HR Manager', 'Department Manager' , 'Employee Supervisor' ] 
+      label: 'Dashboard', path: '/dashboard', visibleForRoles: ['Administrator', 'HR Manager', 'Department Manager' , 'Employee Supervisor' ] 
+    },
+    { 
+      label: 'Report', path: '/project-report', visibleForRoles: ['Administrator', 'HR Manager', 'Department Manager' , 'Employee Supervisor' ] 
     },
     {
       label: "Department Manager Dashboard",

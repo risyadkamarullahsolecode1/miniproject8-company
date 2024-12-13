@@ -19,6 +19,7 @@ import DependentManagement from "./components/pages/DependentManagement";
 import EmployeeProfiles from "./components/pages/EmployeeProfiles";
 import EmployeeDashboard from "./components/pages/EmployeeDashboard";
 import PublicInformation from "./components/pages/PublicInformation";
+import NewDashboard from "./components/pages/NewDashboard";
 
 export const routers = createBrowserRouter([
     {   
@@ -38,7 +39,7 @@ export const routers = createBrowserRouter([
           element: <Register />,
        },
        {
-        path: "/",
+        path: "/dashboard",
         element: <Dashboard />,
        },
        {
@@ -87,8 +88,8 @@ export const routers = createBrowserRouter([
            element: <EmployeesList />,
         },
         {
-            path: "/",
-            element: <Dashboard />,
+            path: "/dashboard",
+            element: <NewDashboard />,
         },
         {
            path: "/employees/new",
@@ -145,8 +146,8 @@ export const routers = createBrowserRouter([
           element: <EmployeeSupervisorDashboard />,
         },
         {
-            path: "/",
-            element: <Dashboard />,
+            path: "/dashboard",
+            element: <NewDashboard />,
         },
         {
           path: "/employees",

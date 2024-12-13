@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert, Spinner, Container, Row, Col } from 'react-bootstrap';
-import { Document, Page, pdfjs } from 'react-pdf';
 import apiClient from '../../axiosConfig';
-
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 const EmployeeReport = () => {
   const [departmentName, setDepartmentName] = useState('');
   const [pdfFile, setPdfFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
 
   const handleGenerateReport = async () => {
     if (!departmentName) {
@@ -49,11 +44,6 @@ const EmployeeReport = () => {
     }
   };
 
-  const onDocumentLoadSuccess = ({ numPages }) => {
-    setNumPages(numPages);
-    setPageNumber(1);
-  };
-
   return (
     <Container>
       <Row className="my-4">
@@ -85,34 +75,13 @@ const EmployeeReport = () => {
               <Button variant="success" className="mb-3" onClick={handleDownloadPDF}>
                 Download PDF
               </Button>
-              <Document
-                file={pdfFile}
-                onLoadSuccess={onDocumentLoadSuccess}
-                loading={<Spinner animation="border" />}
-              >
-                <Page pageNumber={pageNumber} width={800} />
-              </Document>
-              {numPages && (
-                <div className="d-flex justify-content-between mt-3">
-                  <Button
-                    variant="secondary"
-                    disabled={pageNumber <= 1}
-                    onClick={() => setPageNumber((prev) => prev - 1)}
-                  >
-                    Previous
-                  </Button>
-                  <span>
-                    Page {pageNumber} of {numPages}
-                  </span>
-                  <Button
-                    variant="secondary"
-                    disabled={pageNumber >= numPages}
-                    onClick={() => setPageNumber((prev) => prev + 1)}
-                  >
-                    Next
-                  </Button>
-                </div>
-              )}
+              <iframe
+                src={pdfFile}
+                title="Employee Report"
+                width="100%"
+                height="600px"
+                style={{ border: '1px solid #ddd' }}
+              ></iframe>
             </>
           )}
         </Col>
